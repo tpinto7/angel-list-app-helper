@@ -3,13 +3,15 @@
 // found in the LICENSE file.
 
 'use strict';
-
 function submitForm(){
-  let color = '#e8453c';
   console.log("submitForm");
-  let fullName = $('label:contains("Full name"');
+  let name = document.getElementById("inputCoverLetter");
+  console.log(name.length);
+  let filtered = name.value.split(/{{[^.]*}}/g).join("test");
+
+
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.executeScript(null,{code: 'document.getElementById("userNameInput").value  = "Testing"'});
+    chrome.tabs.executeScript(null,{code: 'document.getElementById("form-input--userNote").value  = "' + filtered + '";'});
   });
 }
 
